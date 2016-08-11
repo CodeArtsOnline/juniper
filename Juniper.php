@@ -29,6 +29,7 @@ class Juniper
 	public static function run($options)
 	{
 		self::register('dev', $options['developer_mode']);
+		self::register('base_dir', str_replace("\\", "/", $options['base_dir']));
 		self::getInstance()->_run($options);
 	}
 
@@ -52,6 +53,7 @@ class Juniper
 		for($i = 0; $i < 1000000; $i++){
 			$test = rand(1, 4000);
 		}
+		echo self::singleton('core/translate')->__("test");
 	}
 
 	/**
@@ -191,7 +193,7 @@ class Juniper
 	 * @param $name
 	 * @return mixed
 	 */
-	public static function core($name)
+	public static function core($name, $args = array())
 	{
 		$name_split = explode("/", $name);
 		$name_split = array_map('ucfirst', $name_split);
@@ -199,6 +201,6 @@ class Juniper
 
 		$class = 'App\\Core\\'.$name_glued;
 
-		return new $class();
+		return new $class(...$args);
 	}
 }
