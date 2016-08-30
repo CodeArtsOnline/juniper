@@ -26,6 +26,7 @@ trait Singleton
 		if(is_null(static::$_instance)) {
 			static::$_instance = new static();
 		}
+		static::$_instance->init();
 
 		return static::$_instance;
 	}
@@ -34,4 +35,9 @@ trait Singleton
 	 * Turning construct private
 	 */
 	private function __construct(){}
+
+	/**
+	 * Initialises the class (replaces __construct)
+	 */
+	public function init(){}
 }

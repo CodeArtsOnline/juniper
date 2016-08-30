@@ -40,6 +40,8 @@ class Juniper
 	 */
 	private function _run($options)
 	{
+		self::singleton('core/db')->initialise();
+
 		self::getEvent('A')->addTask("test", array(__CLASS__, "test"));
 		self::dispatchEvent('A');
 		self::singleton("core/log")->printLog();
@@ -53,7 +55,6 @@ class Juniper
 		for($i = 0; $i < 1000000; $i++){
 			$test = rand(1, 4000);
 		}
-		echo self::singleton('core/translate')->__("test");
 	}
 
 	/**
@@ -184,6 +185,9 @@ class Juniper
 		$name_glued = implode("\\", $name_split);
 
 		$class = 'App\\'.$name_glued;
+		if(!class_exists($class)){
+			self::throwException('CoreException', "Class {$class} does not exist");
+		}
 		return call_user_func_array(array($class, 'getInstance'), $args);
 	}
 
@@ -200,7 +204,9 @@ class Juniper
 		$name_glued = implode("\\", $name_split);
 
 		$class = 'App\\Core\\'.$name_glued;
-
+		if(!class_exists($class)){
+			self::throwException('CoreException', "Class {$class} does not exist");
+		}
 		return new $class(...$args);
 	}
 }

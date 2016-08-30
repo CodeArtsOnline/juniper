@@ -1,0 +1,14 @@
+{
+	"title":"Juniper",
+
+
+	"database":
+	{
+		"type":"mysql",
+		"host":"localhost",
+		"user":"root",
+		"pass":"",
+		"port":3306,
+		"database":"test"
+	}
+}

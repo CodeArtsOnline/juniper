@@ -65,7 +65,7 @@ class Translate extends Core
 				continue;
 			}
 
-			$dictionary = \Juniper::core('json')->readJson($language_dir.$file->getFilename());
+			$dictionary = $this->core('json')->readJson($language_dir.$file->getFilename());
 
 			if(!isset($this->_dictionary[$language])) {
 				$this->_dictionary[$language] = array();
@@ -98,7 +98,7 @@ class Translate extends Core
 			$language = $this->core('param')->cookie('lang');
 		}
 		else{
-			$language = "en";
+			$language = $this->singleton('config')->getLanguage();
 		}
 
 		$this->_language = $language;
