@@ -1,0 +1,31 @@
+{
+	"name":		"Eden v1",
+	"id":		"juniper_eden",
+	"author":	"CodeArtsOnline",
+
+	"templates": {
+		"before": {
+			"head": {
+				"file":"head.phtml"
+			},
+			"header": {
+				"file":"header.phtml"
+			}
+		},
+
+		"content": {
+			"1column": {
+				"file":"1column.phtml"
+			},
+			"2columns-left": {
+				"file":"2columns-left.phtml"
+			}
+		},
+
+		"after": {
+			"footer": {
+				"file":"footer.phtml"
+			}
+		}
+	}
+}
